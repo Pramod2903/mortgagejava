@@ -26,6 +26,11 @@ public class UserServiceImpl implements UserService{
 		return userRepository.findByUserName(userName)
 				.orElseThrow(()->new UserNotFoundException("No User found with username :"+userName));
 	}
+	@Override
+	public void updateUser(User user) {
+		userRepository.save(user);
+		
+	}
 	
 	public void getOffers(String userName) {
 		User user = userRepository.findByUserName(userName)
