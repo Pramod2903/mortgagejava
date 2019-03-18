@@ -39,6 +39,18 @@ public class User {
 	private double altIncomee;
 	private double otherIncome;
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public List<Property> getProperty() {
+		return property;
+	}
+	public void setProperty(List<Property> property) {
+		this.property = property;
+	}
 	public String getName() {
 		return name;
 	}
