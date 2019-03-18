@@ -40,6 +40,12 @@ public class UserServiceImpl implements UserService{
 		
 	}
 	
+	@Override
+	public List<User> getAllUsers() {
+		return userRepository.findAll();
+	}
+	
+	@Override
 	public Map<Long, List<Offer>> getOffers(String userName) throws Exception {
 		Map<Long, List<Offer>> offers = new HashMap();
 		User user = userRepository.findByUserName(userName)

@@ -14,9 +14,12 @@ public class OfferServiceImpl implements OfferService {
 	@Autowired
 	OfferRepository offerRepo;
 	
+	@Override
 	public List<Offer> getAllOffers(){
 		return offerRepo.findAll();
 	}
+	
+	@Override
 	public List<Offer> getEligibleOffers(double offerValue){
 		return offerRepo.findLessThanOrEqualToByLoanAmount(offerValue);
 	}
