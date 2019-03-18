@@ -25,8 +25,9 @@ public class User {
 	
 	@OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
 	@JoinColumn(name="property_id")
-	private List<Property> property = new ArrayList();
+	private List<Property> properties = new ArrayList();
 	private String name;
+	private String userName;
 	private String password;
 	private String cpassword;
 	private Long phone;
@@ -45,11 +46,11 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public List<Property> getProperty() {
-		return property;
+	public List<Property> getProperties() {
+		return properties;
 	}
-	public void setProperty(List<Property> property) {
-		this.property = property;
+	public void setProperties(List<Property> properties) {
+		this.properties = properties;
 	}
 	public String getName() {
 		return name;
@@ -95,6 +96,12 @@ public class User {
 	}
 	public String getPan() {
 		return pan;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public void setPan(String pan) {
 		this.pan = pan;
