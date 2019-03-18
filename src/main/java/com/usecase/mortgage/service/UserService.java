@@ -8,4 +8,6 @@ public interface UserService {
 
 	public User getUserByUserName(String userName);
 
+	public void updateUser(User user);
+
 }
