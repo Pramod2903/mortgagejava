@@ -54,14 +54,17 @@ public class UserServiceImpl implements UserService{
 		
 		List<Property> props = user.getProperties();
 		ZoneId defaultZoneId = ZoneId.systemDefault();
-		Instant instant = user.getDob().toInstant();		
-		Period period = Period.between(LocalDate.now(), instant.atZone(defaultZoneId).toLocalDate());
+		System.out.println("============================");
+		System.out.println((java.sql.Date)user.getDob());
+		//Instant instant = ((java.sql.Date)user.getDob()).toLocalDate()
+		Period period = Period.between(LocalDate.now(),((java.sql.Date)user.getDob()).toLocalDate());
+		//Period period = Period.between(LocalDate.now(), instant.atZone(defaultZoneId).toLocalDate());
 		if(period.getYears()>60 || baseAmount <15000){
 			//return null;
 		}
 		
 		for(Property prop : props) {
-			Double propValue = prop.getArea() * sqftService.getSqftValue(prop.getPincode()).getValue();
+			Double propValue = prop.getArea() * sqftService.getSqftValue(new Long(560100)).getValue();
 			
 			Double offerValue = propValue*0.6;
 			offers.put(prop.getId(), offerValue<1000000 ? null : offerService.getEligibleOffers(offerValue));
