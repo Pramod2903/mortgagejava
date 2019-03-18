@@ -1,6 +1,8 @@
 package com.usecase.mortgage.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -21,15 +23,15 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
 	@JoinColumn(name="property_id")
-	private Property property;
+	private List<Property> property = new ArrayList();
 	private String name;
 	private String password;
 	private String cpassword;
 	private Long phone;
 	private String email;
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date dob;
 	private String gender;
 	private String pan;
