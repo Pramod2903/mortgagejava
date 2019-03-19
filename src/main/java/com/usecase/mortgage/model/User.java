@@ -40,6 +40,15 @@ public class User {
 	private double altIncomee;
 	private double otherIncome;
 	
+	public User(){
+		
+	}
+	public User(String userName,String password,String name){
+		this.name=name;
+		this.userName = userName;
+		this.password = password;
+	}
+	
 	public Long getId() {
 		return id;
 	}
