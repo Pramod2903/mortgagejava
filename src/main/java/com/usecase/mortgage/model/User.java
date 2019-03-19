@@ -24,7 +24,7 @@ public class User {
 	private Long id;
 	
 	@OneToMany(cascade=CascadeType.ALL,orphanRemoval=true)
-	@JoinColumn(name="property_id")
+	@JoinColumn(name="user_id")
 	private List<Property> properties = new ArrayList();
 	private String name;
 	private String userName;

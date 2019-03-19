@@ -1,0 +1,2 @@
+insert into user (id,alt_incomee,cpassword,dob,email,gender,name,other_income,pan,password,phone,salary,user_name)
+values (1000,0,'','1991-11-11','shivu.murthy1@gmail.com','Male','Shivu',0,'65556','othing',8425828752,100000,'shivu'); 

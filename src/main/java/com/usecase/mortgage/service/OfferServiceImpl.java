@@ -15,13 +15,17 @@ public class OfferServiceImpl implements OfferService {
 	OfferRepository offerRepo;
 	
 	@Override
-	public List<Offer> getAllOffers(){
+	public List<Offer> getAllOffers() throws Exception{
 		return offerRepo.findAll();
 	}
 	
 	@Override
 	public List<Offer> getEligibleOffers(double offerValue){
-		return offerRepo.findLessThanOrEqualToByLoanAmount(offerValue);
+		
+		List<Offer> offers = offerRepo.findLessThanOrEqualToByLoanAmount(offerValue);
+		offers.stream().forEach(o -> 
+				System.out.println(o.getDescription()));
+		return offers;
 	}
 
 }

@@ -1,15 +1,19 @@
 package com.usecase.mortgage.model;
 
+import java.io.Serializable;
+import java.sql.Clob;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
-public class Offer {
+public class Offer implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -19,6 +23,9 @@ public class Offer {
 	private float interestPercentage;
 	private int period;
 	private double emi;
+	@Lob
+	private String description;
+	
 	
 	public Long getId() {
 		return id;
@@ -49,6 +56,12 @@ public class Offer {
 	}
 	public void setEmi(double emi) {
 		this.emi = emi;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 }

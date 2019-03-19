@@ -62,9 +62,9 @@ public class UserServiceImpl implements UserService{
 		if(period.getYears()>60 || baseAmount <15000){
 			//return null;
 		}
-		
+		offerService.getAllOffers();
 		for(Property prop : props) {
-			Double propValue = prop.getArea() * sqftService.getSqftValue(new Long(560100)).getValue();
+			Double propValue = prop.getArea() * sqftService.getSqftValue(prop.getPincode()).getValue();
 			
 			Double offerValue = propValue*0.6;
 			offers.put(prop.getId(), offerValue<1000000 ? null : offerService.getEligibleOffers(offerValue));

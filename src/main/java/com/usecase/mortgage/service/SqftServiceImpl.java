@@ -17,8 +17,7 @@ public class SqftServiceImpl implements SqftService {
 	public SqftPrice getSqftValue(Long pincode) throws Exception {
 		System.out.println("++++++++++++++++++++++++++++++++");
 		System.out.println(pincode);
-		return sqftRepo.findByPincode(pincode).get();
-				//orElseThrow(()->new Exception("Invalid Pincode"));
+		return sqftRepo.findByPincode(pincode).orElseThrow(()->new Exception("Invalid Pincode"));
 	}
 	
 }
