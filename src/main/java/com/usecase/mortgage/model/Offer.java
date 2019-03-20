@@ -1,7 +1,6 @@
 package com.usecase.mortgage.model;
 
 import java.io.Serializable;
-import java.sql.Clob;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +14,10 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 @Entity
 public class Offer implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@JsonProperty(access=Access.WRITE_ONLY)

@@ -1,5 +1,6 @@
 package com.usecase.mortgage.controller;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -18,12 +19,17 @@ import com.usecase.mortgage.model.Offer;
 import com.usecase.mortgage.model.User;
 import com.usecase.mortgage.service.UserService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api(value="Manages all User related operations")
 @RestController
 @RequestMapping("/api")
 @CrossOrigin
 public class UserController {
 	@Autowired
 	UserService userService;
+
 	
 	@PostMapping("/user")
 	public ResponseEntity<User> createUser(@RequestBody User user) {
@@ -37,6 +43,7 @@ public class UserController {
 		return new ResponseEntity<>(user,HttpStatus.OK);
 	}
 	
+	@ApiOperation(value="View a list of all Users",response=List.class)
 	@GetMapping("/user")
 	public ResponseEntity<List<User>> getAllUsers(){
 		List<User> users = userService.getAllUsers();
@@ -48,6 +55,4 @@ public class UserController {
 		return new ResponseEntity<>(userService.getOffers(userName),HttpStatus.OK);
 	}
 	
-	
-
 }

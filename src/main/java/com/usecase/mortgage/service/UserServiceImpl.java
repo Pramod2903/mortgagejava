@@ -1,14 +1,15 @@
 package com.usecase.mortgage.service;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.time.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.usecase.mortgage.exceptions.InvalidPincodeException;
 import com.usecase.mortgage.exceptions.UserNotFoundException;
 import com.usecase.mortgage.model.Offer;
 import com.usecase.mortgage.model.Property;
@@ -46,21 +47,16 @@ public class UserServiceImpl implements UserService{
 	}
 	
 	@Override
-	public Map<Long, List<Offer>> getOffers(String userName) throws Exception {
-		Map<Long, List<Offer>> offers = new HashMap();
+	public Map<Long, List<Offer>> getOffers(String userName) throws UserNotFoundException,InvalidPincodeException {
+		Map<Long, List<Offer>> offers = new HashMap<>();
 		User user = userRepository.findByUserName(userName)
 				.orElseThrow(()->new UserNotFoundException("No User found with username :"+userName));
 		Double baseAmount = (user.getSalary() + user.getOtherIncome()+user.getAltIncomee())*0.4;
 		
 		List<Property> props = user.getProperties();
-		ZoneId defaultZoneId = ZoneId.systemDefault();
-		System.out.println("============================");
-		System.out.println((java.sql.Date)user.getDob());
-		//Instant instant = ((java.sql.Date)user.getDob()).toLocalDate()
 		Period period = Period.between(LocalDate.now(),((java.sql.Date)user.getDob()).toLocalDate());
-		//Period period = Period.between(LocalDate.now(), instant.atZone(defaultZoneId).toLocalDate());
 		if(period.getYears()>60 || baseAmount <15000){
-			//return null;
+			return null;
 		}
 		offerService.getAllOffers();
 		for(Property prop : props) {

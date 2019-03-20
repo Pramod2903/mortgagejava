@@ -28,9 +28,7 @@ public class UserRepositoryTest {
 		user.setUserName("Test23");
 		user.setPassword("p@ssWord245");
 		user.setPan("BVC5578G");
-		entityManager.persist(user);
-		User savedUser = userRepository.findByUserName("Test23").orElseThrow(()->new Exception());
-		
+		entityManager.persist(user);		
 		assertThat(user.getName()).isEqualTo("Test");		
 	}
 }

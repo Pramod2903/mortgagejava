@@ -28,13 +28,14 @@ public class PropertyController {
 	@Autowired
 	UserService userService;
 	
+	
 	@PostMapping("/{userName}")
 	public ResponseEntity<Property> addProperty(@RequestBody Property property,@PathVariable String userName){
 		Property propertyRes = propertyService.addProperty(property);
 		User user = userService.getUserByUserName(userName);
 		user.getProperties().add(propertyRes);
 		userService.updateUser(user);
-		return new ResponseEntity<Property>(propertyRes,HttpStatus.CREATED);
+		return new ResponseEntity<>(propertyRes,HttpStatus.CREATED);
 	}
 	
 	@PostMapping("/addProperties/{userName}")
@@ -45,8 +46,9 @@ public class PropertyController {
 		user.getProperties().addAll(propertyRes);
 		userService.updateUser(user);
 		
-		return new ResponseEntity<List<Property>>(propertyRes,HttpStatus.CREATED);
+		return new ResponseEntity<>(propertyRes,HttpStatus.CREATED);
 		
 	}
+	
 
 }
